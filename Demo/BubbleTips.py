@@ -13,7 +13,7 @@ import sys
 
 from PyQt5.QtCore import QRectF, Qt, QPropertyAnimation, pyqtProperty, \
     QPoint, QParallelAnimationGroup, QEasingCurve
-from PyQt5.QtGui import QPainter, QPainterPath, QColor, QPen
+from PyQt5.QtGui import QPainter, QPainterPath, QColor, QPen, QFont
 from PyQt5.QtWidgets import QLabel, QWidget, QVBoxLayout, QApplication,\
     QLineEdit, QPushButton
 
@@ -25,7 +25,7 @@ __Version__ = "Version 1.0"
 
 class BubbleLabel(QWidget):
 
-    BackgroundColor = QColor(195, 195, 195)
+    BackgroundColor = QColor(250, 250, 250)
     BorderColor = QColor(150, 150, 150)
 
     def __init__(self, *args, **kwargs):
@@ -35,8 +35,14 @@ class BubbleLabel(QWidget):
         self.setWindowFlags(
             Qt.Window | Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.X11BypassWindowManagerHint)
         # 设置最小宽度和高度
-        self.setMinimumWidth(200)
-        self.setMinimumHeight(48)
+        self.setMinimumWidth(200 * 2)
+        self.setMinimumHeight(48 * 2)
+
+        font = QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(18)
+        self.setFont(font)
+
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         layout = QVBoxLayout(self)
         # 左上右下的边距（下方16是因为包括了三角形）
